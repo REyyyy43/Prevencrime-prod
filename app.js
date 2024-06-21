@@ -11,10 +11,11 @@ const loginRouter = require('./controllers/login');
 const logoutRouter = require('./controllers/logout');
 const reportsRouter = require('./controllers/report');
 const { userExtractor } = require('./middleware/auth');
+const { MONGO_URI } = require('./config');
 
 (async () => {
     try {
-        await mongoose.connect(process.env.MONGO_URI_TEST);
+        await mongoose.connect(MONGO_URI);
         console.log('Conectado a MongoDB');
     } catch (error) {
         console.log(error);
