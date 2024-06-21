@@ -22,13 +22,14 @@ reportsRouter.post('/', userExtractor, async (request, response) => {
             motorcycleUsed,
             user: user._id,
         });
-
+ 
         const savedReport = await newReport.save();
         return response.status(201).json(savedReport);
     } catch (error) {
         console.error('Error al crear el informe:', error);
         return response.status(500).json({ error: 'Error al crear el informe' });
     }
+ 
 });
 
 // Endpoint para obtener todos los informes
@@ -37,7 +38,7 @@ reportsRouter.get('/', async (request, response) => { // Ajusta la ruta a '/'
         const reports = await Report.find(); // Obtener todos los informes desde la base de datos
         return response.status(200).json(reports); // Responder con los informes en formato JSON
     } catch (error) {
-        console.error('Error al obtener los informes:', error);
+        console.error('Error al obtener los informess:', error);
         response.status(500).json({ error: 'Error al obtener los informes' });
     }
 });
