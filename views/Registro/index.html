@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <title>...</title>
+</head>
+<body> 
+    <div class="relative">
+    <nav id="navbar" class="fixed backdrop-blur-xl text-xs bg-red-800 top-0 left-0 right-0 h-16 flex items-center justify-between p-5">
+    </nav>
+    
+        <div class="pt-16 lg:pt-0 lg:h-screen flex flex-col lg:flex-row max-w-7xl mx-auto justify-center items-center px-4 relative z-10">
+            <div class="w-full lg:w-2/4 hidden md:flex md:justify-center md:items-center mb-16 lg:mb-0">
+                <img src="/images/Prevencrime.png" class="w-2/3 lg:w-2/3 flex flex-wrap flex-col" alt="imagen signup">
+            </div>
+            <form id="form" class="flex shadow-2xl text-black rounded-md w-full md:w-3/5 flex-col p-4 top-0 justify-center content-center gap-4 bg-neutral-100 items-start flex-wrap">
+            <div class="flex flex-col justify-center p-2 w-full gap-4">
+           
+            <div class="input-div" class="flex flex-col gap-2">
+                        <input 
+                        type="text"
+                        id="name-input"
+                        placeholder="Username"
+                        class="w-full rounded-lg p-3 outline-none bg-neutral-200"
+                        autocomplete="off"
+                        >
+                        <p class="information p-1 text-red-600 m-0 hidden">
+                            Debe incluir 1 letra mayúscula y 1 letra minúscula.
+                        </p>
+            </div>
+            <div class="input-div" class="flex flex-col gap-2">
+                        <input 
+                        type="email"
+                        id="email-input"
+                        placeholder="Email"
+                        class="w-full rounded-lg p-3 outline-none bg-neutral-200"
+                        autocomplete="off"
+                        >
+                        <p class="information p-1 text-red-600 m-0 hidden">
+                           Debe seguir el siguiente formato: example@gmail.com
+                        </p>
+            </div>
+            <div class="input-div" class="flex flex-col gap-2">   
+                        <select id="countries" class="w-full rounded-lg p-3 outline-none text-black bg-neutral-200">
+                            <option value="" Selected disabled>Selecciona un pais</option>
+                        <option data-countryCode="PE" value="51">Peru (+51)</option>                        
+                </select>
+                <p class="information text-red-600 m-0 hidden">Select a country</p>
+            </div>
+            <div class="input-div" class="flex flex-col w-full gap-2">    
+                <div class="phone-container flex gap-4">
+                    <span id="phone-code" class="text-black bg-neutral-200 p-3 rounded-lg">+##</span>
+                    <input 
+                    type="tel"
+                    id="phone-input"
+                    placeholder="Telefono"
+                    class="w-full rounded-lg p-3 outline-none bg-neutral-200"
+                    autocomplete="off"
+                    >
+                </div>    
+                <p class="information p-1 text-red-600 m-0 hidden">
+                   Solo acepta numeros
+                </p>
+            </div>
+            <div class="input-div" class="flex flex-col gap-2">
+                <input 
+                type="password"
+                id="password-input"
+                placeholder="Contraseña"
+                class="w-full rounded-lg p-3 outline-none bg-neutral-200"
+                autocomplete="off"
+                >
+                <p class="information p-1 text-red-600 m-0 hidden">
+                    Solo acepta numeros y letras
+                </p>
+            </div>
+            <div class="input-div" class="flex flex-col gap-2">
+                <input 
+                type="password"
+                id="match-input"
+                placeholder="Confirmar contraseña"
+                class="w-full rounded-lg p-3 outline-none bg-neutral-200"
+                autocomplete="off"
+                >
+                <p class="information p-1 text-red-600 m-0 hidden">
+                    Debe coincidir con la contraseña
+                </p>
+            </div>
+            <button id="form-btn" disabled class="bg-red-700 opacity-50 hover:bg-red-800 cursor-not-allowed w-full font-bold text-white p-4 mt-2 rounded-lg">Registro</button>
+            <div class="flex flex-wrap items-center md:justify-between justify-center">
+                <p class="text-base text-black font-semibold">
+                 ¿Ya estas registrado?
+                    <a href="/login/" class="transition ease-in-out text-stone-900 hover:text-stone-900 md:hover:bg-stone-300 p-1.5 rounded-lg">inicia sesion</a>
+                </p>
+              
+                       <a href="/HerramientasInv/" class="transition ease-in-out text-stone-900 hover:text-stone-900 bg-stone-50 hover:bg-stone-300 p-1.5 rounded-lg">iniciar sesion como invitado</a>
+            </div>
+        </div>
+         <div id="notification" class="relative mt-4 text-3xl text-green-900"></div>
+        </form>
+        </div>
+    </div>
+
+    <script type="module" src="index.js"></script>
+    <script type="module" src="../Components/notification.js"></script>
+    <script src="/Components/nav.js"></script>
+</body>
+</html>

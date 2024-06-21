@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="index.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <title>Prevencrime</title>
+</head>
+<body>
+    <nav id="navbar" class="fixed backdrop-blur-xl text-xl bg-red-800 top-0 left-0 right-0 h-26 flex items-center justify-between p-5">
+        <h1 class="flex items-center text-2xl font-bold text-white">PREVENCRIME
+            <img class="h-10 w-10 text-white" src="/images/pngwing.com.png" alt="1">
+        </h1>
+        <div class="flex md:order-2 space-x-4 p-3 md:space-x-4 rtl:space-x-reverse relative">
+            <button class="logout left-auto p-1 cursor-pointer border-b-4 text-white">Cerrar sesión</button>
+            <a href="/RegisterDE/" class="left-auto p-1 cursor-pointer border-b-4 text-white">Registrar DNC</a>
+             <a href="/Herramientas/" class="left-auto p-1 cursor-pointer border-b-4 text-white">Herramientas</a>
+        </div>
+    </nav>
+    <main>
+        <section class="content pt-20">
+            <div class="section">
+                <h2>Realizar Consultas</h2>
+                <p>Consulta predicciones de índices de robos a futuro.</p>
+                <button id="redireccionarBtn" class="button">Ir a la Página de Análisis</button>
+            </div>
+            <div class="section">
+                <h2>Revisión de Recomendaciones y compartir</h2>
+                <p>Ayúdanos a difundir la aplicación en las redes sociales para que más personas se interesen en registrar sus denuncias.</p>
+                <a href="/Recomendaciones/" class="button">Ingresar</a>
+            </div>
+            <div class="section">
+                <h2>Registrar Denuncia</h2>
+                <p>Ayúdanos a mantener segura la comunidad de nuestros distritos. Registra una denuncia de manera rápida y sencilla.</p>
+                <a href="/RegisterDE/" class="button">Registrar Denuncia</a>
+            </div>
+            <div class="section">
+                <h2>Sobre Nosotros</h2>
+                <a href="/SobreNosotros/" class="button">Ingresar</a>
+            </div>
+        </section>
+    </main>
+    <footer>
+    </footer> 
+    <script src="/Components/nav.js"></script>
+    <script src="index.js"></script>
+</body>
+</html>
+

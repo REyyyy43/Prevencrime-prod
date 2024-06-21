@@ -1,0 +1,11 @@
+import pickle
+from sklearn.linear_model import LogisticRegression
+
+# Supongamos que tienes un modelo entrenado, por ejemplo:
+model = LogisticRegression()
+
+# Guardar el modelo
+model_path = 'models/crime_model.pkl'
+with open(model_path, 'wb') as file:
+    pickle.dump(model, file)
+    print(f"Modelo guardado correctamente en '{model_path}'")

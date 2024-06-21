@@ -1,0 +1,35 @@
+{
+  "name": "djangoproject",
+  "version": "1.0.0",
+  "main": "tailwind.config.js",
+  "scripts": {
+    "start": "cross-env NODE_ENV=production node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "cross-env NODE_ENV=dev nodemon index.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "keywords": [],
+  "description": "",
+  "dependencies": {
+    "axios": "^1.6.8",
+    "bcrypt": "^5.1.1",
+    "cookie-parser": "^1.4.6",
+    "cors": "^2.8.5",
+    "date-carousel": "^5.2.1",
+    "dotenv": "^16.4.5",
+    "express": "^4.18.2",
+    "jsonwebtoken": "^9.0.2",
+    "mongoose": "^8.4.0",
+    "morgan": "^1.10.0",
+    "node-cron": "^3.0.3",
+    "node.js": "^0.0.1-security",
+    "nodemailer": "^6.9.13",
+    "nodemon": "^3.0.2",
+    "swiper": "^11.1.0"
+  },
+  "devDependencies": {
+    "cross-env": "^7.0.3",
+    "tailwindcss": "^3.4.1"
+  }
+}
