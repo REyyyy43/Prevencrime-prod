@@ -3,11 +3,9 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "tailwind-build": "npx tailwindcss -i ./input.css -o ./views/styles/output.css --watch",
     "start": "cross-env NODE_ENV=production node index.js",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "cross-env NODE_ENV=dev nodemon index.js",
-    "build:css": "npx tailwindcss build src/styles.css -o public/styles.css"
+    "dev": "cross-env NODE_ENV=dev nodemon index.js"
   },
   "author": "",
   "license": "ISC",
