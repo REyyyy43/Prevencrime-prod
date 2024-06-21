@@ -11,10 +11,3 @@ logout.addEventListener('click', async e => {
         console.log(error);
     }
 });
-  
-document.addEventListener('DOMContentLoaded', function() {
-    let button = document.getElementById('redireccionarBtn');
-    button.addEventListener('click', function() {
-        window.location.href = 'http://127.0.0.1:5000';
-    });
-});

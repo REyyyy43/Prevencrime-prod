@@ -26,8 +26,6 @@ app.use(express.json());
 app.use(cookieParser());
 app.use(morgan('tiny'));
 
-app.use(express.static(path.join(__dirname, 'public')));
-
 // Rutas frontend
 app.use('/', express.static(path.resolve('views', 'Home')));
 app.use('/Herramientas', express.static(path.resolve('views', 'Herramientas')));
