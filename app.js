@@ -32,6 +32,7 @@ app.use('/', express.static(path.resolve('views', 'Home')));
 app.use('/Herramientas', express.static(path.resolve('views', 'Herramientas')));
 app.use('/HerramientasInv', express.static(path.resolve('views', 'HerramientasInv')));
 app.use('/Registro', express.static(path.resolve('views', 'Registro')));
+app.use('/styles', express.static(path.resolve('views', 'styles')));
 app.use('/RegistroDE', express.static(path.resolve('views', 'RegistroDE')));
 app.use('/RegisterDE', express.static(path.resolve('views', 'RegisterDE')));
 app.use('/Recomendaciones', express.static(path.resolve('views', 'Recomendaciones')));
