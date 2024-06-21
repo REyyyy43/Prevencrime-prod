@@ -35,8 +35,6 @@ app.use('/Registro', express.static(path.resolve('views', 'Registro')));
 app.use('/RegistroDE', express.static(path.resolve('views', 'RegistroDE')));
 app.use('/RegisterDE', express.static(path.resolve('views', 'RegisterDE')));
 app.use('/Recomendaciones', express.static(path.resolve('views', 'Recomendaciones')));
-app.use('/modeloML', express.static(path.resolve('views', 'modeloML')));
-app.use('/ingreso-datos-masivos', express.static(path.resolve('views', 'ingreso-datos-masivos')));
 app.use('/login', express.static(path.resolve('views', 'login')));
 app.use('/Admin', express.static(path.resolve('views', 'Admin')));
 app.use('/UsersRegister', express.static(path.resolve('views', 'UsersRegister')));
