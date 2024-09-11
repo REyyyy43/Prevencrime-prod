@@ -33,26 +33,33 @@ let phoneValidation = false;
 let countriesValidation = false;
 
 // Función de validación
-const validation = (input , regexValidation) => {
-    const information = input.parentElement.children[1];
-    console.log(information);
+const validation = (input, regexValidation) => {
+    const parent = input.parentElement;
+    const information = parent ? parent.querySelector('.information') : null;
+
+    if (!information) {
+        console.error('No se puede encontrar el elemento de información.');
+        return;
+    }
+
     formBtn.disabled = !nameValidation || !emailValidation || !passwordValidation || !matchValidation || !phoneValidation || !countriesValidation;
-    
+
     if (input.value === '') {
-        input.classList.remove('outline-red-500', 'outline-2' , 'outline' );
-        input.classList.remove('outline-green-500' , 'outline-2' , 'outline');
+        input.classList.remove('outline-red-500', 'outline-2', 'outline');
+        input.classList.remove('outline-green-500', 'outline-2', 'outline');
         input.classList.add('outline-none');
         information.classList.add('hidden');
     } else if (regexValidation) {
         input.classList.remove('outline-none');
-        input.classList.add('outline-green-500'  , 'outline-2' , 'outline');
-        formBtn.classList.remove('disabled' , 'cursor-not-allowed', 'opacity-50');
+        input.classList.remove('outline-red-500', 'outline-2', 'outline');
+        input.classList.add('outline-green-500', 'outline-2', 'outline');
+        formBtn.classList.remove('disabled', 'cursor-not-allowed', 'opacity-50');
         information.classList.add('hidden');
-    } else if (!regexValidation){
+    } else {
         input.classList.remove('outline-none');
-        input.classList.remove('outline-green-500' , 'outline-2' , 'outline' );
-        input.classList.add('outline-red-500' , 'outline-2' , 'outline');
-        formBtn.classList.add('disabled' , 'cursor-not-allowed', 'opacity-50');
+        input.classList.remove('outline-green-500', 'outline-2', 'outline');
+        input.classList.add('outline-red-500', 'outline-2', 'outline');
+        formBtn.classList.add('disabled', 'cursor-not-allowed', 'opacity-50');
         information.classList.remove('hidden');
     }
 };
@@ -89,6 +96,7 @@ phoneInput.addEventListener('input', e => {
     } else if (phoneValidation) {
         phoneInput.classList.remove('outline-none');
         phoneInput.classList.add('outline-green-500'  , 'outline-2' , 'outline');
+        phoneInput.classList.remove('outline-red-500', 'outline', 'outline');
         formBtn.classList.remove('disabled' , 'cursor-not-allowed');
         information.classList.add('hidden');
     } else if (!phoneValidation){
@@ -112,15 +120,15 @@ matchInput.addEventListener('input', e => {
     validation(matchInput, matchValidation);
     enableFormButton();
 });
-countries.addEventListener('input', e => {
-    const optionSelected = [...e.target.children].find(option => option.selected);
-    phoneCode.innerHTML = `+${optionSelected.value}`
-    countries.classList.add('outline-green-500'  , 'outline-2' , 'outline');
-    phoneCode.classList.add('outline-green-500'  , 'outline-2' , 'outline');
-    countriesValidation = optionSelected.value === '' ? false : true;
+countries.addEventListener('change', e => {
+    const optionSelected = [...e.target.options].find(option => option.selected);
+    phoneCode.innerHTML = `+${optionSelected ? optionSelected.value : '##'}`;
+    countries.classList.add('outline-green-500', 'outline-2', 'outline');
+    phoneCode.classList.add('outline-green-500', 'outline-2', 'outline');
+    countriesValidation = optionSelected && optionSelected.value !== '';
     enableFormButton();
-    validation(e, null, null);
- });
+    validation(e.target, countriesValidation);
+});
 
 // Evento de envío del formulario
 form.addEventListener('submit', async e => {
