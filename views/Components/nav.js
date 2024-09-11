@@ -102,7 +102,7 @@ const createNavSobreNosotros = () => {
                 <h1 class="flex items-center text-2xl font-bold text-white">PREVENCRIME
                     <img class="h-10 w-10 text-white" src="/images/pngwing.com.png" alt="1">
                 </h1>
-                <a class="p-1 cursor-pointer border-b-4 text-white">Herramientas</a>
+                <a href="/" class="p-1 cursor-pointer border-b-4 text-white">Herramientas</a>
           
         `;
     } else {
