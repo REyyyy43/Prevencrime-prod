@@ -103,10 +103,6 @@ const createNavSobreNosotros = () => {
                     <img class="h-10 w-10 text-white" src="/images/pngwing.com.png" alt="1">
                 </h1>
                 <a class="p-1 cursor-pointer border-b-4 text-white">Herramientas</a>
-                <div class="flex md:order-2 space-x-4 p-3 md:space-x-4 rtl:space-x-reverse relative">
-                    <button class="left-auto p-1 cursor-pointer border-b-4 text-white">Cerrar sesión</button>
-                    <a href="/RegisterDE/" class="left-auto p-1 cursor-pointer border-b-4 text-white">Registrar DNC</a>
-                </div>
           
         `;
     } else {
