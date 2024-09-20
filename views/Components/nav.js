@@ -102,7 +102,7 @@ const createNavSobreNosotros = () => {
                 <h1 class="flex items-center text-2xl font-bold text-white">PREVENCRIME
                     <img class="h-10 w-10 text-white" src="/images/pngwing.com.png" alt="1">
                 </h1>
-                <a href="/" class="p-1 cursor-pointer border-b-4 text-white">Herramientas</a>
+                <a href="/" id="tools-link" class="p-1 cursor-pointer border-b-4 text-white">Herramientas</a>
           
         `;
     } else {
@@ -120,8 +120,7 @@ const createNavLogin = () => {
                 </h1>
                 
                 <div class="flex md:order-2 space-x-4 p-3 md:space-x-4 rtl:space-x-reverse relative">
-                    <button class="left-auto p-1 cursor-pointer border-b-4 text-white">Cerrar sesión</button>
-                    <a href="/Registro/" class="left-auto p-1 cursor-pointer border-b-4 text-white">Registrar</a>
+                    
                 </div>
           
         `;
