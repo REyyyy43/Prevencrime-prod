@@ -1,9 +1,9 @@
 $(function() {
     $("#fecha").datepicker({
-        dateFormat: "dd-mm-yy"
+        dateFormat: "dd-mm-yy",
+        minDate: new Date(2024, 0, 1) // Establece la fecha mínima a 1 de enero de 2024
     });
 });
-
 document.getElementById('form-btn').addEventListener('click', async (event) => {
     event.preventDefault();
 

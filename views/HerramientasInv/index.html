@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="index.css">
     <link rel="stylesheet" href="/styles/output.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <title>Prevencrime</title>
 </head>
 <body>
@@ -13,26 +15,45 @@
             <img class="h-10 w-10 text-white" src="/images/pngwing.com.png" alt="1">
         </h1>
         <div class="flex md:order-2 space-x-4 p-3 md:space-x-4 rtl:space-x-reverse relative">
-            <a href="/Registro/" class="left-auto p-1 cursor-pointer border-b-4 text-white">Registrar</a>
+            <button class="logout left-auto p-1 cursor-pointer border-b-4 text-white">Cerrar sesión</button>
+            <a href="/RegisterDE/" class="left-auto p-1 cursor-pointer border-b-4 text-white">Registrar DNC</a>
+             <a href="/Herramientas/" class="left-auto p-1 cursor-pointer border-b-4 text-white">Herramientas</a>
         </div>
     </nav>
     <main>
-        <section class="content pt-20">
-            <div class="section">
-                <h2>Realizar Consultas</h2>
-                <p>Consulta predicciones de índices de robos a futuro.</p>
-                <a href="https://modeloml.onrender.com" class="button">Realizar Consultas</a>
+        <section class="relative content text-center py-10 pt-24 flex flex-wrap flex-col justify-between items-center">
+            <div class="pt-8 flex flex-col justify-center items-center">
+                <div class="p-4 w-2/3 md:w-full bg-neutral-200 shadow-lg rounded-lg">
+                <div class="section text-xl p-4">
+                    <h2 class="font-bold">Realizar Consultas</h2>
+                    <p>Consulta predicciones de índices de robos a futuro.</p>
+                    <br>
+                    <a href="https://modeloml.onrender.com" class="button p-2 bg-zinc-500 text-gray-100 rounded-lg">Realizar Consultas</a>
+                </div>
             </div>
-            <div class="section">
-                <h2>Sobre Nosotros</h2>
-                <a href="/SobreNosotros/" class="button">Ingresar</a>
+            <br>
+            <div class="p-4 w-2/3 md:w-full bg-neutral-200 shadow-lg rounded-lg">
+                <div class="section text-xl p-4">
+                    <h2 class="font-bold">Sobre Nosotros</h2>
+                    <br>
+                    <a href="/SobreNosotros/" class="button p-2 bg-zinc-500 text-gray-100 rounded-lg">Ingresar</a>
+                </div>
             </div>
-            
-        </section>
+            <br>
+            <div class="p-4 w-2/3 md:w-full bg-neutral-200 shadow-lg rounded-lg">
+            <div class="section text-xl p-4">
+            <h2 class="font-bold p-2">Revisión de Recomendaciones y compartir</h2>
+            <p>Ayúdanos a difundir la aplicación en las redes sociales para que más personas se interesen en registrar sus denuncias.</p>
+            <br>
+            <a href="/Recomendaciones/" class="button p-2 bg-zinc-500 text-gray-100 rounded-lg">Ingresar</a>
+        </div>
+         </div>   
+            </section>
     </main>
     <footer>
     </footer> 
     <script src="/Components/nav.js"></script>
+    <script src="index.js"></script>
 </body>
 </html>
 

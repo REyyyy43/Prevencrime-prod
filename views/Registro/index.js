@@ -167,3 +167,29 @@ validation(matchInput, false);
         enableFormButton();
     }
 });
+
+document.getElementById('toggle-password').addEventListener('click', function() {
+    const passwordInput = document.getElementById('password-input');
+    const eyeIcon = document.getElementById('eye-icon');
+    
+    if (passwordInput.type === 'password') {
+        passwordInput.type = 'text';
+        eyeIcon.src = 'path/to/eye-off-icon.png'; // Cambia a ícono de "ocultar"
+    } else {
+        passwordInput.type = 'password';
+        eyeIcon.src = 'path/to/eye-icon.png'; // Cambia a ícono de "mostrar"
+    }
+});
+
+document.getElementById('toggle-match-password').addEventListener('click', function() {
+    const matchInput = document.getElementById('match-input');
+    const matchEyeIcon = document.getElementById('match-eye-icon');
+    
+    if (matchInput.type === 'password') {
+        matchInput.type = 'text';
+        matchEyeIcon.src = 'path/to/eye-off-icon.png'; // Cambia a ícono de "ocultar"
+    } else {
+        matchInput.type = 'password';
+        matchEyeIcon.src = 'path/to/eye-icon.png'; // Cambia a ícono de "mostrar"
+    }
+});

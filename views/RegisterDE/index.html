@@ -21,11 +21,11 @@
             </div>
             <form id="form" class="flex shadow-2xl text-black rounded-md w-full md:w-3/5 flex-col p-4 top-0 justify-center content-center gap-4 bg-red-700 items-start flex-wrap">
               <div class="flex flex-col justify-center p-2 w-full gap-4">
-                  <div class="input-div flex flex-col gap-2">
-                    <label for="fecha" class="text-white p-1">Fecha:</label>
-                    <input type="text" id="fecha" class="w-full rounded-lg p-3 outline-none bg-neutral-200" autocomplete="off">
-                    <p class="information p-1 text-red-600 m-0 hidden">Selecciona una fecha</p>
-                  </div>
+                <div class="input-div flex flex-col gap-2">
+                  <label for="fecha" class="text-white p-1">Fecha:</label>
+                  <input type="date" id="fecha" class="w-full rounded-lg p-3 outline-none bg-neutral-200" autocomplete="off" min="2024-01-01">
+                  <p class="information p-1 text-red-600 m-0 hidden">Selecciona una fecha a partir de 2024</p>
+              </div>
                   <div class="input-div flex flex-col gap-2">
                     <label for="tipo" class="text-white p-1">Tipo:</label>
                     <select id="tipo" class="w-full rounded-lg p-3 outline-none text-black bg-neutral-200">

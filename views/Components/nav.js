@@ -9,7 +9,7 @@ const createNavHerramientas = () => {
                 <div class="flex md:order-2 space-x-4 p-3 md:space-x-4 rtl:space-x-reverse relative">
                     <button class="left-auto p-1 cursor-pointer border-b-4 text-white">Cerrar sesión</button>
                     <a href="/RegisterDE/" class="left-auto p-1 cursor-pointer border-b-4 text-white">Registrar DNC</a>
-                     <a href="/Herramientas/" class="left-auto p-1 cursor-pointer border-b-4 text-white">Herramientas</a>
+                     
                 </div>
 
           
@@ -109,25 +109,7 @@ const createNavSobreNosotros = () => {
         console.error('Elemento navbar no encontrado en el DOM');
     }
 };
-const createNavUsersRegister = () => {
-    const navbar = document.getElementById('navbar');
-    if (navbar) {
-        navbar.innerHTML = `
-           
-                <h1 class="flex items-center text-2xl font-bold text-white">PREVENCRIME
-                    <img class="h-10 w-10 text-white" src="/images/pngwing.com.png" alt="1">
-                </h1>
-                <a class="p-1 cursor-pointer border-b-4 text-white">Herramientas</a>
-                <div class="flex md:order-2 space-x-4 p-3 md:space-x-4 rtl:space-x-reverse relative">
-                    <button class="left-auto p-1 cursor-pointer border-b-4 text-white">Cerrar sesión</button>
-                    <a href="/RegisterDE/" class="left-auto p-1 cursor-pointer border-b-4 text-white">Registrar DNC</a>
-                </div>
-          
-        `;
-    } else {
-        console.error('Elemento navbar no encontrado en el DOM');
-    }
-};
+
 const createNavLogin = () => {
     const navbar = document.getElementById('navbar');
     if (navbar) {
@@ -152,12 +134,12 @@ const createNavRecomendaciones = () => {
     if (navbar) {
         navbar.innerHTML = `
            
-                <h1 class="flex items-center text-2xl font-bold text-white">PREVENCRIME
-                    <img class="h-10 w-10 text-white" src="/images/pngwing.com.png" alt="1">
-                </h1>
-                <a href="/Registro/" class="p-1 cursor-pointer border-b-4 text-white">Registrarse</a>
-                <div class="flex md:order-2 space-x-4 p-3 md:space-x-4 rtl:space-x-reverse relative">
-                </div>
+                 <h1 class="flex items-center text-2xl font-bold text-white">PREVENCRIME
+            <img class="h-10 w-10 text-white" src="/images/pngwing.com.png" alt="1">
+        </h1>
+        <div class="flex md:order-2 space-x-4 p-3 md:space-x-4 rtl:space-x-reverse relative">
+            <a href="/" class="left-auto p-1 cursor-pointer border-b-4 text-white">Volver</a>
+        </div>
           
         `;
     } else {
@@ -171,13 +153,11 @@ const createNavHerramientasInv = () => {
            
                
             <h1 class="flex items-center text-2xl font-bold text-white">PREVENCRIME
-                    <img class="h-10 w-10 text-white" src="/images/pngwing.com.png" alt="1">
-                </h1>
-                <div class="flex md:order-2 space-x-4 p-3 md:space-x-4 rtl:space-x-reverse relative">
-                    <a href="/SobreNosotros/" class="left-auto p-1 cursor-pointer border-b-4 text-white">Sobre Nosotros</a>
-                     <a href="/Registro/" class="left-auto p-1 cursor-pointer border-b-4 text-white">Registrarse</a>
-                </div>
-          
+            <img class="h-10 w-10 text-white" src="/images/pngwing.com.png" alt="1">
+        </h1>
+        <div class="flex md:order-2 space-x-4 p-3 md:space-x-4 rtl:space-x-reverse relative">
+            <a href="/Registro/" class="left-auto p-1 cursor-pointer border-b-4 text-white">Registrar</a>
+        </div>
         `;
     } else {
         console.error('Elemento navbar no encontrado en el DOM');
@@ -205,7 +185,7 @@ const setNavbar = () => {
     createNavUsersRegister();
     } else if (window.location.pathname === '/login/') {
     createNavLogin();
-    } else if (window.location.pathname === '/HerramientasInv/') {
+    } else if (window.location.pathname === '/') {
     createNavHerramientasInv();
     }
 };
