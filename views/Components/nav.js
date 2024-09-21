@@ -99,7 +99,7 @@ const createNavSobreNosotros = () => {
                 <h1 class="flex items-center text-2xl font-bold text-white">PREVENCRIME
                     <img class="h-10 w-10 text-white" src="/images/pngwing.com.png" alt="1">
                 </h1>
-                <a href="/Herramientas/" id="tools-link" class="p-1 cursor-pointer border-b-4 text-white">Herramientas</a>
+                <a href="/Herramientas/" class="p-1 cursor-pointer border-b-4 text-white">Herramientas</a>
           
         `;
     } else {
@@ -115,7 +115,7 @@ const createNavSobreNosotrosInv = () => {
                 <h1 class="flex items-center text-2xl font-bold text-white">PREVENCRIME
                     <img class="h-10 w-10 text-white" src="/images/pngwing.com.png" alt="1">
                 </h1>
-                <a href="/" id="tools-link" class="p-1 cursor-pointer border-b-4 text-white">Herramientas</a>
+                <a href="/" class="p-1 cursor-pointer border-b-4 text-white">Herramientas</a>
           
         `;
     } else {
@@ -209,8 +209,12 @@ const setNavbar = () => {
     } else if (window.location.pathname === '/RegistroDE/') {
     createNavRegistroDE();
     } else if (window.location.pathname === '/RecomendacionesInv/') {
-    createNavSobreNosotrosInv();
+    createNavRecomendacionesInv();
+    }else if (window.location.pathname === '/Recomendaciones/') {
+        createNavRecomendaciones();
     } else if (window.location.pathname === '/SobreNosotrosInv/') {
+    createNavSobreNosotrosInv();
+    } else if (window.location.pathname === '/SobreNosotros/') {
     createNavSobreNosotros();
     } else if (window.location.pathname === '/UsersRegister/') {
     createNavUsersRegister();
