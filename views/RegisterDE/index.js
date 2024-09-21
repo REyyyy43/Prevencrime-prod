@@ -1,19 +1,20 @@
 $(function() {
-    $("#fecha").datepicker({
-        dateFormat: "yy-mm-dd", // Cambia el formato a yyyy-MM-dd
-        minDate: new Date(2024, 0, 1) // Establece la fecha mínima a 1 de enero de 2024
-    });
+    // Obtener la fecha actual en formato yyyy-mm-dd
+    const today = new Date().toISOString().split('T')[0];
+
+    // Establecer la fecha en el campo de entrada y hacerla no editable
+    $("#fecha").val(today).prop('readonly', true);
 });
 
+// El resto de tu código permanece igual
 document.getElementById('form-btn').addEventListener('click', async (event) => {
     event.preventDefault();
 
-    const date = document.getElementById('fecha').value;
+    const date = document.getElementById('fecha').value; // La fecha ya estará predefinida con el valor actual
     const type = document.getElementById('tipo').value;
     const victimCount = document.getElementById('number').value;
     const district = document.getElementById('distrito').value;
 
-    // Obtener el valor de los botones "Sí" y "No" para weapon y motorcycle
     const weaponUsed = document.getElementById('weapon-yes').classList.contains('selected') ? 'yes' : 'no';
     const motorcycleUsed = document.getElementById('motorcycle-yes').classList.contains('selected') ? 'yes' : 'no';
 
@@ -40,7 +41,7 @@ document.getElementById('form-btn').addEventListener('click', async (event) => {
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify(report),
-            credentials: 'include' // Para incluir cookies en la solicitud
+            credentials: 'include'
         });
 
         if (response.ok) {
@@ -55,7 +56,7 @@ document.getElementById('form-btn').addEventListener('click', async (event) => {
     }
 });
 
-// Manejar eventos de clic en los botones "Sí" y "No"
+// Funciones de selección y notificaciones permanecen igual
 const toggleSelection = (yesId, noId) => {
     document.getElementById(yesId).classList.add('selected');
     document.getElementById(noId).classList.remove('selected');
@@ -69,9 +70,9 @@ document.getElementById('motorcycle-no').addEventListener('click', () => toggleS
 function showNotification(message, type) {
     const notification = document.getElementById('notification');
     notification.innerText = message;
-    notification.className = type === 'success' ? 'text-green-500' : 'text-red-500'; // Cambia la clase dependiendo del tipo
+    notification.className = type === 'success' ? 'text-green-500' : 'text-red-500';
     setTimeout(() => {
         notification.innerText = '';
         notification.className = '';
-    }, 3000); // Extender el tiempo para que el mensaje permanezca visible por más tiempo
+    }, 3000);
 }

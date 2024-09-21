@@ -1,0 +1,13 @@
+{
+	"folders": [
+		{
+			"path": "../.."
+		},
+		{
+			"path": "../../Prevencrime-prod/views"
+		}
+	],
+	"settings": {
+		"liveServer.settings.multiRootWorkspaceName": "PrevenCrimen_definitive"
+	}
+}
