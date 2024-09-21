@@ -1,9 +1,10 @@
 $(function() {
     $("#fecha").datepicker({
-        dateFormat: "dd-mm-yy",
+        dateFormat: "yy-mm-dd", // Cambia el formato a yyyy-MM-dd
         minDate: new Date(2024, 0, 1) // Establece la fecha mínima a 1 de enero de 2024
     });
 });
+
 document.getElementById('form-btn').addEventListener('click', async (event) => {
     event.preventDefault();
 
@@ -12,7 +13,7 @@ document.getElementById('form-btn').addEventListener('click', async (event) => {
     const victimCount = document.getElementById('number').value;
     const district = document.getElementById('distrito').value;
 
-    // Obtener el valor de los botones "Sí" y "No"
+    // Obtener el valor de los botones "Sí" y "No" para weapon y motorcycle
     const weaponUsed = document.getElementById('weapon-yes').classList.contains('selected') ? 'yes' : 'no';
     const motorcycleUsed = document.getElementById('motorcycle-yes').classList.contains('selected') ? 'yes' : 'no';
 
@@ -55,32 +56,22 @@ document.getElementById('form-btn').addEventListener('click', async (event) => {
 });
 
 // Manejar eventos de clic en los botones "Sí" y "No"
-document.getElementById('weapon-yes').addEventListener('click', () => {
-    document.getElementById('weapon-yes').classList.add('selected');
-    document.getElementById('weapon-no').classList.remove('selected');
-});
+const toggleSelection = (yesId, noId) => {
+    document.getElementById(yesId).classList.add('selected');
+    document.getElementById(noId).classList.remove('selected');
+};
 
-document.getElementById('weapon-no').addEventListener('click', () => {
-    document.getElementById('weapon-yes').classList.remove('selected');
-    document.getElementById('weapon-no').classList.add('selected');
-});
-
-document.getElementById('motorcycle-yes').addEventListener('click', () => {
-    document.getElementById('motorcycle-yes').classList.add('selected');
-    document.getElementById('motorcycle-no').classList.remove('selected');
-});
-
-document.getElementById('motorcycle-no').addEventListener('click', () => {
-    document.getElementById('motorcycle-yes').classList.remove('selected');
-    document.getElementById('motorcycle-no').classList.add('selected');
-});
+document.getElementById('weapon-yes').addEventListener('click', () => toggleSelection('weapon-yes', 'weapon-no'));
+document.getElementById('weapon-no').addEventListener('click', () => toggleSelection('weapon-no', 'weapon-yes'));
+document.getElementById('motorcycle-yes').addEventListener('click', () => toggleSelection('motorcycle-yes', 'motorcycle-no'));
+document.getElementById('motorcycle-no').addEventListener('click', () => toggleSelection('motorcycle-no', 'motorcycle-yes'));
 
 function showNotification(message, type) {
     const notification = document.getElementById('notification');
     notification.innerText = message;
-    notification.className = type === 'success' ? 'text-green-100' : 'text-red-100';
+    notification.className = type === 'success' ? 'text-green-500' : 'text-red-500'; // Cambia la clase dependiendo del tipo
     setTimeout(() => {
         notification.innerText = '';
         notification.className = '';
-    }, 1000);
+    }, 3000); // Extender el tiempo para que el mensaje permanezca visible por más tiempo
 }

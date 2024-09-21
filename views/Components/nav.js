@@ -3,15 +3,15 @@ const createNavHerramientas = () => {
     if (navbar) {
         navbar.innerHTML = `
         
-            <h1 class="flex items-center text-2xl font-bold text-white">PREVENCRIME
+            
+ <h1 class="flex items-center text-xl font-bold text-white">PREVENCRIME
                     <img class="h-10 w-10 text-white" src="/images/pngwing.com.png" alt="1">
                 </h1>
                 <div class="flex md:order-2 space-x-4 p-3 md:space-x-4 rtl:space-x-reverse relative">
                     <button class="left-auto p-1 cursor-pointer border-b-4 text-white">Cerrar sesión</button>
-                    <a href="/RegisterDE/" class="left-auto p-1 cursor-pointer border-b-4 text-white">Registrar DNC</a>
-                     
-                </div>
 
+                </div>
+        
           
         `;
     } else {
@@ -25,13 +25,11 @@ const createNavAdmin = () => {
     if (navbar) {
         navbar.innerHTML = `
            
-                <h1 class="flex items-center text-2xl font-bold text-white">PREVENCRIME
+                <h1 class="flex items-center text-xl font-bold text-white">PREVENCRIME
                     <img class="h-10 w-10 text-white" src="/images/pngwing.com.png" alt="1">
                 </h1>
-                <a class="p-1 cursor-pointer border-b-4 text-white">Herramientas</a>
                 <div class="flex md:order-2 space-x-4 p-3 md:space-x-4 rtl:space-x-reverse relative">
                     <button class="left-auto p-1 cursor-pointer border-b-4 text-white">Cerrar sesión</button>
-                    <a href="/RegisterDE/" class="left-auto p-1 cursor-pointer border-b-4 text-white">Registrar DNC</a>
                 </div>
           
         `;
@@ -64,10 +62,9 @@ const createNavRegisterDE = () => {
                  <h1 class="flex items-center text-xl font-bold text-white">PREVENCRIME
                     <img class="h-10 w-10 text-white" src="/images/pngwing.com.png" alt="1">
                 </h1>
-                <a class="p-1 cursor-pointer border-b-4 text-white">Herramientas</a>
                 <div class="flex md:order-2 space-x-4 p-3 md:space-x-4 rtl:space-x-reverse relative">
-                    <button class="left-auto p-1 cursor-pointer border-b-4 text-white">Cerrar sesión</button>
-                    <a href="/RegistroDE/" class="left-auto p-1 cursor-pointer border-b-4 text-white">Ver DNC</a>
+                 <a href="/Herramientas/" class="p-1 cursor-pointer border-b-4 text-white">Inicio</a>
+                 <a href="/RegistroDE/" class="left-auto p-1 cursor-pointer border-b-4 text-white">Ver DNC</a>
                 </div>
           
         `;
@@ -95,6 +92,22 @@ const createNavRegistroDE = () => {
     }
 };
 const createNavSobreNosotros = () => {
+    const navbar = document.getElementById('navbar');
+    if (navbar) {
+        navbar.innerHTML = `
+           
+                <h1 class="flex items-center text-2xl font-bold text-white">PREVENCRIME
+                    <img class="h-10 w-10 text-white" src="/images/pngwing.com.png" alt="1">
+                </h1>
+                <a href="/Herramientas/" id="tools-link" class="p-1 cursor-pointer border-b-4 text-white">Herramientas</a>
+          
+        `;
+    } else {
+        console.error('Elemento navbar no encontrado en el DOM');
+    }
+};
+
+const createNavSobreNosotrosInv = () => {
     const navbar = document.getElementById('navbar');
     if (navbar) {
         navbar.innerHTML = `
@@ -137,6 +150,24 @@ const createNavRecomendaciones = () => {
             <img class="h-10 w-10 text-white" src="/images/pngwing.com.png" alt="1">
         </h1>
         <div class="flex md:order-2 space-x-4 p-3 md:space-x-4 rtl:space-x-reverse relative">
+            <a href="/Herramientas/" class="left-auto p-1 cursor-pointer border-b-4 text-white">Volver</a>
+        </div>
+          
+        `;
+    } else {
+        console.error('Elemento navbar no encontrado en el DOM');
+    }
+};
+
+const createNavRecomendacionesInv = () => {
+    const navbar = document.getElementById('navbar');
+    if (navbar) {
+        navbar.innerHTML = `
+           
+                 <h1 class="flex items-center text-2xl font-bold text-white">PREVENCRIME
+            <img class="h-10 w-10 text-white" src="/images/pngwing.com.png" alt="1">
+        </h1>
+        <div class="flex md:order-2 space-x-4 p-3 md:space-x-4 rtl:space-x-reverse relative">
             <a href="/" class="left-auto p-1 cursor-pointer border-b-4 text-white">Volver</a>
         </div>
           
@@ -145,6 +176,7 @@ const createNavRecomendaciones = () => {
         console.error('Elemento navbar no encontrado en el DOM');
     }
 };
+
 const createNavHerramientasInv = () => {
     const navbar = document.getElementById('navbar');
     if (navbar) {
@@ -176,9 +208,9 @@ const setNavbar = () => {
     createNavRegisterDE();
     } else if (window.location.pathname === '/RegistroDE/') {
     createNavRegistroDE();
-    } else if (window.location.pathname === '/Recomendaciones/') {
-    createNavRecomendaciones();
-    } else if (window.location.pathname === '/SobreNosotros/') {
+    } else if (window.location.pathname === '/RecomendacionesInv/') {
+    createNavSobreNosotrosInv();
+    } else if (window.location.pathname === '/SobreNosotrosInv/') {
     createNavSobreNosotros();
     } else if (window.location.pathname === '/UsersRegister/') {
     createNavUsersRegister();
