@@ -168,28 +168,37 @@ validation(matchInput, false);
     }
 });
 
-document.getElementById('toggle-password').addEventListener('click', function() {
-    const passwordInput = document.getElementById('password-input');
-    const eyeIcon = document.getElementById('eye-icon');
-    
-    if (passwordInput.type === 'password') {
-        passwordInput.type = 'text';
-        eyeIcon.src = 'path/to/eye-off-icon.png'; // Cambia a ícono de "ocultar"
+// Funciones para alternar la visibilidad de las contraseñas
+const togglePassword = document.querySelector('#toggle-password');
+const toggleMatchPassword = document.querySelector('#toggle-matchPassword');
+
+togglePassword.addEventListener('click', () => {
+    const passwordField = passwordInput;
+    const icon = togglePassword.querySelector('i');
+
+    if (passwordField.type === 'password') {
+        passwordField.type = 'text';
+        icon.classList.remove('fa-eye');
+        icon.classList.add('fa-eye-slash');
     } else {
-        passwordInput.type = 'password';
-        eyeIcon.src = 'path/to/eye-icon.png'; // Cambia a ícono de "mostrar"
+        passwordField.type = 'password';
+        icon.classList.remove('fa-eye-slash');
+        icon.classList.add('fa-eye');
     }
 });
 
-document.getElementById('toggle-match-password').addEventListener('click', function() {
-    const matchInput = document.getElementById('match-input');
-    const matchEyeIcon = document.getElementById('match-eye-icon');
-    
-    if (matchInput.type === 'password') {
-        matchInput.type = 'text';
-        matchEyeIcon.src = 'path/to/eye-off-icon.png'; // Cambia a ícono de "ocultar"
+toggleMatchPassword.addEventListener('click', () => {
+    const matchPasswordField = matchInput;
+    const icon = toggleMatchPassword.querySelector('i');
+
+    if (matchPasswordField.type === 'password') {
+        matchPasswordField.type = 'text';
+        icon.classList.remove('fa-eye');
+        icon.classList.add('fa-eye-slash');
     } else {
-        matchInput.type = 'password';
-        matchEyeIcon.src = 'path/to/eye-icon.png'; // Cambia a ícono de "mostrar"
+        matchPasswordField.type = 'password';
+        icon.classList.remove('fa-eye-slash');
+        icon.classList.add('fa-eye');
     }
 });
+

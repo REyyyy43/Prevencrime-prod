@@ -31,18 +31,25 @@ reportsRouter.post('/', userExtractor, async (request, response) => {
     }
 });
 
-// Endpoint para obtener solo los informes del usuario autenticado
+// Endpoint para obtener informes, diferenciando entre usuarios y administradores
 reportsRouter.get('/', userExtractor, async (request, response) => {
     try {
         const user = request.user; // Obtener el usuario autenticado del middleware userExtractor
 
-        // Obtener solo los informes del usuario autenticado
-        const reports = await Report.find({ user: user._id });
-        
+        let reports;
+
+        if (user.role === 'admin') {
+            // Si el usuario es administrador, obtener todos los informes
+            reports = await Report.find({});
+        } else {
+            // Si el usuario no es administrador, obtener solo sus informes
+            reports = await Report.find({ user: user._id });
+        }
+
         return response.status(200).json(reports);
     } catch (error) {
         console.error('Error al obtener los informes:', error);
-        response.status(500).json({ error: 'Error al obtener los informes' });
+        return response.status(500).json({ error: 'Error al obtener los informes' });
     }
 });
 
