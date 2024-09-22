@@ -10,11 +10,11 @@ async function fetchAllUsers() {
         const userInfo = document.createElement('div');
         userInfo.innerHTML = `
         <div class="flex flex-col p-2">
-                    <ul dir="ltr" class="bg-neutral-200 p-4 w-full border-red-700 border-s-4 flex flex-col items-center mb-2">
-        <li class="mb-2">${user.name}</li>
-        <li>${user.email}</li>
-    </ul>
-    </div>
+          <ul dir="ltr" class="bg-neutral-200 p-4 w-full border-red-700 border-s-4 flex flex-col items-center mb-2">
+            <li class="mb-2">${user.name}</li>
+            <li>${user.email}</li>
+          </ul>
+        </div>
         `;
         document.getElementById('users-container').appendChild(userInfo);
       });

@@ -69,10 +69,23 @@ document.getElementById('motorcycle-no').addEventListener('click', () => toggleS
 
 function showNotification(message, type) {
     const notification = document.getElementById('notification');
+    
+    // Limpia las clases previas
+    notification.classList.remove('bg-green-500', 'bg-red-500', 'text-white', 'text-red-50');
+    
+    // Establece el mensaje
     notification.innerText = message;
-    notification.className = type === 'success' ? 'text-green-500' : 'text-red-500';
+
+    // Aplica clases según el tipo
+    if (type === 'success') {
+        notification.classList.add('bg-green-500', 'text-white');
+    } else {
+        notification.classList.add('bg-red-500', 'text-white');
+    }
+
+    // Oculta la notificación después de 3 segundos
     setTimeout(() => {
         notification.innerText = '';
-        notification.className = '';
+        notification.classList.remove('bg-green-500', 'bg-red-500', 'text-white');
     }, 3000);
 }
