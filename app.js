@@ -30,6 +30,7 @@ app.use(morgan('tiny'));
 // Rutas frontend
 app.use('/', express.static(path.resolve('views', 'HerramientasInv')));
 app.use('/Herramientas', express.static(path.resolve('views', 'Herramientas')));
+app.use('/HerramientasAD', express.static(path.resolve('views', 'HerramientasAD')));
 app.use('/Registro', express.static(path.resolve('views', 'Registro')));
 app.use('/styles', express.static(path.resolve('views', 'styles')));
 app.use('/RegistroDE', express.static(path.resolve('views', 'RegistroDE')));
