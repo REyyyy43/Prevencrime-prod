@@ -6,12 +6,13 @@ const { userExtractor } = require('../middleware/auth.js');
 reportsRouter.post('/', userExtractor, async (request, response) => {
     const { date, type, victimCount, district, weaponUsed, motorcycleUsed } = request.body;
 
+    // Validación de campos requeridos
     if (!date || !type || !victimCount || !district || weaponUsed === undefined || motorcycleUsed === undefined) {
         return response.status(400).json({ error: 'Todos los campos son requeridos' });
     }
 
     try {
-        const user = request.user;
+        const user = request.user; // Usuario autenticado del middleware
 
         const newReport = new Report({
             date,
@@ -20,7 +21,7 @@ reportsRouter.post('/', userExtractor, async (request, response) => {
             district,
             weaponUsed,
             motorcycleUsed,
-            user: user._id,
+            user: user._id, // Asignar el informe al usuario autenticado
         });
 
         const savedReport = await newReport.save();
@@ -40,10 +41,10 @@ reportsRouter.get('/', userExtractor, async (request, response) => {
 
         if (user.role === 'admin') {
             // Si el usuario es administrador, obtener todos los informes
-            reports = await Report.find({});
+            reports = await Report.find({}).populate('user', { username: 1, role: 1 });
         } else {
             // Si el usuario no es administrador, obtener solo sus informes
-            reports = await Report.find({ user: user._id });
+            reports = await Report.find({ user: user._id }).populate('user', { username: 1, role: 1 });
         }
 
         return response.status(200).json(reports);
