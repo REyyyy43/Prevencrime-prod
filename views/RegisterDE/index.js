@@ -1,60 +1,140 @@
 $(function() {
-    // Obtener la fecha actual en formato yyyy-mm-dd
-    const today = new Date().toISOString().split('T')[0];
+    // Función para obtener la fecha actual en el formato "yyyy-MM-dd"
+    function getCurrentDate() {
+        const date = new Date().toLocaleString('en-CA', {
+            timeZone: 'America/Lima', // Zona horaria de Perú
+            year: 'numeric',
+            month: '2-digit',
+            day: '2-digit'
+        }).split(',')[0]; // Extraer solo la fecha sin la hora
+        return date;
+    }
 
-    // Establecer la fecha en el campo de entrada y hacerla no editable
-    $("#fecha").val(today).prop('readonly', true);
+    // Establecer la fecha en el campo de entrada
+    $("#fecha").val(getCurrentDate());
+
+    // Hacer que el campo no sea editable
+    $("#fecha").prop('readonly', true);
 });
 
-// El resto de tu código permanece igual
-document.getElementById('form-btn').addEventListener('click', async (event) => {
-    event.preventDefault();
+// Para actualizar automáticamente la fecha sin recargar la página, puedes usar un intervalo
+setInterval(function() {
+    $("#fecha").val(getCurrentDate());
+}, 86400000); // 86400000 ms = 24 horas
 
-    const date = document.getElementById('fecha').value; // La fecha ya estará predefinida con el valor actual
-    const type = document.getElementById('tipo').value;
-    const victimCount = document.getElementById('number').value;
-    const district = document.getElementById('distrito').value;
+// Manejar el envío del formulario
+document.getElementById('form').addEventListener('submit', async (event) => {
+    event.preventDefault(); // Evitar el envío tradicional del formulario
 
-    const weaponUsed = document.getElementById('weapon-yes').classList.contains('selected') ? 'yes' : 'no';
-    const motorcycleUsed = document.getElementById('motorcycle-yes').classList.contains('selected') ? 'yes' : 'no';
+    const fecha = document.getElementById('fecha').value;
+    const tipo = document.getElementById('tipo').value;
+    const distrito = document.getElementById('distrito').value;
+    const victimCount = document.getElementById('victimCount').value; // Asegúrate de que el ID sea correcto
+    const weaponUsed = document.querySelector('input[name="weaponUsed"]:checked')?.value; 
+    const motorcycleUsed = document.querySelector('input[name="motorcycleUsed"]:checked')?.value; 
 
-    console.log({ date, type, victimCount, district, weaponUsed, motorcycleUsed });
+    // Crear el objeto de datos para enviar
+    const reportData = {
+        date: fecha,
+        type: tipo,
+        district: distrito,
+        victimCount: victimCount, 
+        weaponUsed: weaponUsed === 'yes', 
+        motorcycleUsed: motorcycleUsed === 'yes', 
+    };
 
-    if (!date || !type || !victimCount || !district) {
-        showNotification('Todos los campos son requeridos', 'error');
+    // Verificación de campos requeridos
+    if (!fecha || !tipo || !victimCount || !distrito || weaponUsed === undefined || motorcycleUsed === undefined) {
+        document.getElementById('notification').textContent = 'Todos los campos son requeridos.';
+        notification.classList.add('bg-green-500', 'text-white');
+        setTimeout(() => {
+            notification.innerText = '';
+            notification.classList.remove('bg-green-500', 'bg-red-500', 'text-white', 'text-black');
+        }, 3000);
         return;
     }
 
-    const report = {
-        date,
-        type,
-        victimCount,
-        district,
-        weaponUsed,
-        motorcycleUsed,
-    };
+    console.log(reportData); // Verifica qué datos estás enviando
 
     try {
-        const response = await fetch('/api/reports', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(report),
-            credentials: 'include'
-        });
+        const response = await axios.post('/api/reports', reportData); 
 
-        if (response.ok) {
-            const data = await response.json();
-            showNotification('Informe registrado exitosamente', 'success');
-        } else {
-            const errorData = await response.json();
-            showNotification('Error al registrar el informe: ' + errorData.error, 'error');
+        if (response.status === 201) {
+            document.getElementById('notification').textContent = 'Informe registrado exitosamente';
+            notification.classList.add('bg-green-500', 'text-white');
+            setTimeout(() => {
+                notification.innerText = '';
+                notification.classList.remove('bg-green-500', 'bg-red-500', 'text-white', 'text-black');
+            }, 3000);
+            document.getElementById('form').reset(); // Limpiar el formulario
         }
     } catch (error) {
-        showNotification('Error al registrar el informe', 'error');
+        console.error('Error al enviar el informe:', error);
+        document.getElementById('notification').textContent = 'Error al registrar el informe. Inténtalo más tarde.';
+        notification.classList.add('bg-green-500', 'text-white');
+        setTimeout(() => {
+            notification.innerText = '';
+            notification.classList.remove('bg-green-500', 'bg-red-500', 'text-white', 'text-black');
+        }, 3000);
     }
 });
+
+async function fetchAllReports() {
+    try {
+        const response = await fetch('/api/reports');
+
+        if (!response.ok) {
+            const errorData = await response.json();
+            throw new Error(errorData.error || 'Error al obtener los informes');
+        }
+
+        const reports = await response.json();
+
+        // Limpiar el contenedor de reportes
+        const reportsContainer = document.getElementById('reports-container');
+        reportsContainer.innerHTML = '';
+
+        // Procesar y mostrar los informes recibidos
+        reports.forEach(report => {
+            const reportInfo = document.createElement('div');
+
+            reportInfo.classList.add(
+                'bg-neutral-200',
+                'p-4',
+                'w-full',
+                'border-red-700',
+                'border-s-4',
+                'flex',
+                'flex-col',
+                'items-center'
+            );
+
+            // Convertir la fecha a un formato legible
+            const reportDate = new Date(report.date).toLocaleDateString('es-PE'); // Usar 'es-PE' para formato Perú
+
+            reportInfo.innerHTML = `
+                <p class="mb-2">Fecha: ${reportDate}</p>
+                <p>Tipo: ${report.type}</p>
+                <p>Cantidad de víctimas: ${report.victimCount}</p>
+                <p>Distrito: ${report.district}</p>
+                <p>¿Uso de arma?: ${report.weaponUsed ? 'Sí' : 'No'}</p>
+                <p>¿Uso de moto?: ${report.motorcycleUsed ? 'Sí' : 'No'}</p>
+            `;
+
+            reportsContainer.appendChild(reportInfo);
+        });
+    } catch (error) {
+        console.error('Error al obtener los informes:', error);
+        const notification = document.getElementById('notification');
+        notification.textContent = 'Error al cargar los informes.';
+        notification.classList.add('bg-green-500', 'text-white');
+        
+        setTimeout(() => {
+            notification.innerText = '';
+            notification.classList.remove('bg-green-500', 'bg-red-500', 'text-white', 'text-black');
+        }, 3000);
+    }
+}
 
 // Funciones de selección y notificaciones permanecen igual
 const toggleSelection = (yesId, noId) => {
@@ -71,7 +151,7 @@ function showNotification(message, type) {
     const notification = document.getElementById('notification');
     
     // Limpia las clases previas
-    notification.classList.remove('bg-green-500', 'bg-red-500', 'text-white', 'text-red-50');
+    notification.classList.remove('bg-green-500', 'bg-red-500', 'text-white', 'text-red-50', 'text-black');
     
     // Establece el mensaje
     notification.innerText = message;
@@ -86,6 +166,6 @@ function showNotification(message, type) {
     // Oculta la notificación después de 3 segundos
     setTimeout(() => {
         notification.innerText = '';
-        notification.classList.remove('bg-green-500', 'bg-red-500', 'text-white');
+        notification.classList.remove('bg-green-500', 'bg-red-500', 'text-white', 'text-black');
     }, 3000);
 }

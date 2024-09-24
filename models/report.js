@@ -18,11 +18,11 @@ const reportSchema = new mongoose.Schema({
     required: true,
   },
   weaponUsed: {
-    type: String,
+    type: Boolean,
     required: true,
   },
   motorcycleUsed: {
-    type: String,
+    type: Boolean,
     required: true,
   },
   user: {
@@ -32,13 +32,13 @@ const reportSchema = new mongoose.Schema({
   },
 });
 
-// Define el método toJSON para personalizar la serialización a JSON
+// Personalizar JSON
 reportSchema.set('toJSON', {
-    transform: (document, returnedObject) => {
-        returnedObject.id = returnedObject._id.toString();
-        delete returnedObject._id;
-        delete returnedObject.__v;
-    }
+  transform: (document, returnedObject) => {
+    returnedObject.id = returnedObject._id.toString();
+    delete returnedObject._id;
+    delete returnedObject.__v;
+  },
 });
 
 const Report = mongoose.model('Report', reportSchema);

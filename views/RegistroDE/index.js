@@ -1,11 +1,10 @@
-// Función para obtener y mostrar los informes
 async function fetchAllReports() {
     try {
-        // Hacer una solicitud a la API para obtener los informes
         const response = await fetch('/api/reports');
 
         if (!response.ok) {
-            throw new Error('Error al obtener los informes');
+            const errorData = await response.json();
+            throw new Error(errorData.error || 'Error al obtener los informes');
         }
 
         const reports = await response.json();
@@ -19,18 +18,18 @@ async function fetchAllReports() {
             const reportInfo = document.createElement('div');
 
             reportInfo.classList.add(
-                'bg-neutral-200', 
-                'p-4', 
-                'w-full', 
-                'border-red-700', 
-                'border-s-4', 
-                'flex', 
-                'flex-col', 
+                'bg-neutral-200',
+                'p-4',
+                'w-full',
+                'border-red-700',
+                'border-s-4',
+                'flex',
+                'flex-col',
                 'items-center'
             );
 
             // Convertir la fecha a un formato legible
-            const reportDate = new Date(report.date).toLocaleDateString();
+            const reportDate = new Date(report.date).toLocaleDateString('es-PE'); // Usar 'es-PE' para formato Perú
 
             reportInfo.innerHTML = `
                 <p class="mb-2">Fecha: ${reportDate}</p>
