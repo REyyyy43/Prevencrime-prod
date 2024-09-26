@@ -1,27 +1,17 @@
-// Función para obtener los informes del usuario actual
-async function fetchUserReports() {
+// Función para obtener todos los informes y mostrarlos en el contenedor
+async function fetchAllReports() {
     try {
-        // Obtén el token del usuario almacenado en las cookies
-        const token = Cookies.get('userToken'); // Suponiendo que el token se llama 'userToken'
-        
-        // Configura el encabezado de la solicitud con el token
-        const config = {
-            headers: {
-                Authorization: `Bearer ${token}`
-            }
-        };
+        const response = await fetch('/api/reports');
 
-        // Realiza la solicitud a la API para obtener solo los informes del usuario autenticado
-        const response = await axios.get('/api/reports/user', config);
-
-        if (response.status !== 200) {
-            throw new Error('Error al obtener los informes del usuario');
+        if (!response.ok) {
+            const errorData = await response.json();
+            throw new Error(errorData.error || 'Error al obtener los informes');
         }
 
-        const reports = response.data;
+        const reports = await response.json();
 
         // Limpiar el contenedor de reportes
-        const reportsContainer = document.getElementById('reports-container');
+        const reportsContainer = document.getElementById('reports-container2');
         reportsContainer.innerHTML = ''; // Limpiar contenido anterior
 
         // Procesar y mostrar los informes recibidos
@@ -54,9 +44,9 @@ async function fetchUserReports() {
             reportsContainer.appendChild(reportInfo);
         });
     } catch (error) {
-        console.error('Error al obtener los informes del usuario:', error);
+        console.error('Error al obtener los informes:', error);
         const notification = document.getElementById('notification');
-        notification.textContent = 'Error al cargar los informes del usuario.';
+        notification.textContent = 'Error al cargar los informes.';
         notification.classList.add('bg-red-500', 'text-white');
 
         setTimeout(() => {
@@ -66,7 +56,7 @@ async function fetchUserReports() {
     }
 }
 
-// Llamar a la función para cargar los informes del usuario al iniciar la página
+// Llamar a la función para cargar los informes al iniciar la página
 document.addEventListener('DOMContentLoaded', () => {
-    fetchUserReports();
+    fetchAllReports();
 });

@@ -3,7 +3,8 @@ const User = require('../models/user');
 
 const userExtractor = async (request, response, next) => {
     try {
-        const token = request.cookies?.accessToken; // Se obtiene el token de las cookies
+        const token = request.cookies?.accessToken; // Obtenemos el token de las cookies
+
         if (!token) {
             return response.status(401).send({ error: 'No se proporcionó un token de acceso.' });
         }
@@ -17,9 +18,9 @@ const userExtractor = async (request, response, next) => {
             return response.status(404).send({ error: 'Usuario no encontrado.' });
         }
 
-        // Asignar el usuario al request para que esté disponible en las rutas siguientes
+        // Asignar el usuario al request
         request.user = user;
-        
+
         console.log('Usuario autenticado:', user);
 
         // Pasar al siguiente middleware o ruta
