@@ -19,21 +19,36 @@ loginRouter.post('/', async (request, response) => {
         return response.status(400).json({ error: 'El email o la contraseña es inválida' });
     }
 
-    // Aquí se genera un nuevo token para cada inicio de sesión
-    const userForToken = { id: userExist.id };
+    // Limpiar las cookies antes de establecer una nueva sesión
+    response.clearCookie('adminToken');
+    response.clearCookie('accessToken');
 
-    const accessToken = jwt.sign(userForToken, process.env.ACCESS_TOKEN_SECRET, {
-        expiresIn: '1d'
+    // Crear el token según el rol
+    const userForToken = { id: userExist.id, role: userExist.role };
+    let token;
+
+    if (userExist.role === 'admin') {
+        token = jwt.sign(userForToken, process.env.ADMIN_TOKEN_SECRET, { expiresIn: '1d' });
+        response.cookie('adminToken', token, {
+            expires: new Date(Date.now() + 1000 * 60 * 60 * 24),
+            secure: process.env.NODE_ENV === 'production',
+            httpOnly: true
+        });
+    } else {
+        token = jwt.sign(userForToken, process.env.ACCESS_TOKEN_SECRET, { expiresIn: '1d' });
+        response.cookie('accessToken', token, {
+            expires: new Date(Date.now() + 1000 * 60 * 60 * 24),
+            secure: process.env.NODE_ENV === 'production',
+            httpOnly: true
+        });
+    }
+
+    return response.status(200).json({
+        id: userExist.id,
+        name: userExist.name,
+        email: userExist.email,
+        role: userExist.role
     });
-
-    // Almacenar el token en las cookies
-    response.cookie('accessToken', accessToken, {
-        expires: new Date(Date.now() + 1000 * 60 * 60 * 24),
-        secure: process.env.NODE_ENV === 'production',
-        httpOnly: true
-    });
-
-    return response.status(200).json(userExist);
 });
 
 module.exports = loginRouter;

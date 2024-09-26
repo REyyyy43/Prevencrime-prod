@@ -3,14 +3,23 @@ const User = require('../models/user');
 
 const userExtractor = async (request, response, next) => {
     try {
-        const token = request.cookies?.accessToken; // Obtenemos el token de las cookies
+        const accessToken = request.cookies?.accessToken;
+        const adminToken = request.cookies?.adminToken;
+
+        // Verifica cuál token está presente
+        const token = accessToken || adminToken;
 
         if (!token) {
             return response.status(401).send({ error: 'No se proporcionó un token de acceso.' });
         }
 
         // Verificar el token y decodificarlo
-        const decoded = jwt.verify(token, process.env.ACCESS_TOKEN_SECRET);
+        let decoded;
+        if (adminToken) {
+            decoded = jwt.verify(token, process.env.ADMIN_TOKEN_SECRET);
+        } else {
+            decoded = jwt.verify(token, process.env.ACCESS_TOKEN_SECRET);
+        }
 
         // Buscar el usuario en la base de datos
         const user = await User.findById(decoded.id);

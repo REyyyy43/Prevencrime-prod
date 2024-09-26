@@ -33,7 +33,7 @@ reportsRouter.post('/', userExtractor, async (request, response) => {
 });
 
 // Endpoint para obtener todos los informes
-reportsRouter.get('/', async (request, response) => { // Ajusta la ruta a '/'
+reportsRouter.get('/admin', async (request, response) => { // Ajusta la ruta a '/'
     try {
         const reports = await Report.find(); // Obtener todos los informes desde la base de datos
         return response.status(200).json(reports); // Responder con los informes en formato JSON

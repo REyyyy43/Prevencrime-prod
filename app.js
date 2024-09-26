@@ -7,6 +7,7 @@ const cors = require('cors');
 const cookieParser = require('cookie-parser');
 const morgan = require('morgan');
 const usersRouter = require('./controllers/users');
+const adminRouter = require('./controllers/admin');
 const loginRouter = require('./controllers/login');
 const logoutRouter = require('./controllers/logout');
 const reportsRouter = require('./controllers/report');
@@ -49,6 +50,7 @@ app.use('/verify/:id/:token', express.static(path.resolve('views', 'verify')));
 
 // Rutas backend
 app.use('/api/users', usersRouter);
+app.use('/api/admin/', adminRouter)
 app.use('/api/login', loginRouter);
 app.use('/api/logout', logoutRouter);
 app.use('/api/reports', userExtractor, reportsRouter);

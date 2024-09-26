@@ -1,14 +1,19 @@
 // Función para obtener todos los informes y mostrarlos en el contenedor
 async function fetchAllReports() {
     try {
-        const response = await fetch('/api/reports');
+        const token = Cookies.get('adminToken'); // Asegúrate de que el token se llame 'adminToken'
+        const config = {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        };
+        
+        // Realiza la solicitud a la API
+        const response = await axios.get('/api/reports/admin', config);
 
-        if (!response.ok) {
-            const errorData = await response.json();
-            throw new Error(errorData.error || 'Error al obtener los informes');
-        }
+        // No necesitas verificar response.ok, ya que axios lanza un error en caso de fallos
 
-        const reports = await response.json();
+        const reports = response.data; // Aquí ya tienes los datos en formato JSON
 
         // Limpiar el contenedor de reportes
         const reportsContainer = document.getElementById('reports-container2');
@@ -46,13 +51,15 @@ async function fetchAllReports() {
     } catch (error) {
         console.error('Error al obtener los informes:', error);
         const notification = document.getElementById('notification');
-        notification.textContent = 'Error al cargar los informes.';
-        notification.classList.add('bg-red-500', 'text-white');
+        if (notification) {
+            notification.textContent = 'Error al cargar los informes.';
+            notification.classList.add('bg-red-500', 'text-white');
 
-        setTimeout(() => {
-            notification.innerText = '';
-            notification.classList.remove('bg-green-500', 'bg-red-500', 'text-white', 'text-black');
-        }, 3000);
+            setTimeout(() => {
+                notification.innerText = '';
+                notification.classList.remove('bg-green-500', 'bg-red-500', 'text-white', 'text-black');
+            }, 3000);
+        }
     }
 }
 

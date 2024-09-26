@@ -1,9 +1,9 @@
-// Función para obtener los informes del usuario actual
 async function fetchUserReports() {
     try {
         // Obtén el token del usuario almacenado en las cookies
-        const token = Cookies.get('userToken'); // Suponiendo que el token se llama 'userToken'
-        
+        const token = Cookies.get('accessToken'); // Asegúrate de que el nombre sea correcto
+        console.log('Token obtenido:', token); // Verifica el token
+
         // Configura el encabezado de la solicitud con el token
         const config = {
             headers: {

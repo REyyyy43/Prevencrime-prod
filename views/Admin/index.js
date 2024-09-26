@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', () => {
         logout.addEventListener('click', async (e) => { 
             e.preventDefault(); // Evita el comportamiento por defecto del enlace
             try {
-                await axios.get('/api/logout/user'); // Llama a la API de cierre de sesión
+                await axios.get('/api/logout/admin'); // Llama a la API de cierre de sesión
                 window.location.replace('/login'); // Redirige a la página de login
             } catch (error) {
                 console.log('Error al cerrar sesión:', error);
