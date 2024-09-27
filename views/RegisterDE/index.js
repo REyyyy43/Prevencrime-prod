@@ -60,7 +60,7 @@ document.getElementById('form').addEventListener('submit', async (event) => {
         const response = await axios.post('/api/reports', reportData); 
 
         if (response.status === 201) {
-            document.getElementById('notification').textContent = 'Informe registrado exitosamente';
+            document.getElementById('notification').textContent = 'Informe registrado exitosamente. Actualice la pagina para enviar otro informe';
             notification.classList.add('bg-green-500', 'text-white');
             setTimeout(() => {
                 notification.innerText = '';
