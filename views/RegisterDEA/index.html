@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/styles/output.css">
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <title>Formulario de Informe</title>
+</head>
+<body>
+    <div class="relative">
+        <nav id="navbar" class=" backdrop-blur-xl text-xs bg-red-800 top-0 left-0 right-0 h-16 flex items-center justify-between p-5">
+            <h1 class="flex items-center text-xl font-bold text-white">PREVENCRIME
+                <img class="h-10 w-10 text-white" src="/images/pngwing.com.png" alt="1">
+            </h1>
+            <div class="flex md:order-2 space-x-4 p-3 md:space-x-4 rtl:space-x-reverse relative">
+             <a href="/HerramientasAD/" class="p-1 cursor-pointer border-b-4 text-white">Inicio</a>
+            </div>
+        </nav>
+        <div class="lg:pt-0 pt-20 lg:h-screen flex flex-col lg:flex-row max-w-7xl mx-auto justify-center items-center px-4 relative z-10">
+            <div class="w-full lg:w-2/4 hidden md:flex md:justify-center md:items-center mb-16 lg:mb-0">
+                <img src="/images/Prevencrime.png" class="w-2/4 lg:w-2/3 flex flex-wrap flex-col" alt="imagen signup">
+            </div>
+            <form id="form" class="flex shadow-2xl rounded-md w-full text-xs md:w-3/5 flex-col p-4 top-0 justify-center content-center gap-4 bg-red-700 items-start flex-wrap">
+                <div class="flex flex-col justify-center p-2 w-full gap-4">
+                    <div class="input-div flex flex-col gap-2">
+                        <label for="fecha" class="text-white p-1">Fecha:</label>
+                        <input type="date" id="fecha" class="w-full rounded-lg p-3 outline-none bg-neutral-200" autocomplete="off" min="2024-01-01">
+                        <p class="information p-1 text-red-600 m-0 hidden">Selecciona una fecha a partir de 2024</p>
+                    </div>
+
+                    <div class="input-div flex flex-col gap-2">
+                        <label for="tipo" class="text-white p-1">Tipo:</label>
+                        <select id="tipo" class="w-full rounded-lg p-3 outline-none text-black bg-neutral-200">
+                            <option value="" selected disabled>Seleccionar</option>
+                            <option value="robo">Robo</option>
+                            <option value="hurto">Hurto</option>
+                        </select>
+                        <p class="information text-red-600 m-0 hidden">Selecciona un tipo</p>
+                    </div>
+
+                    <div class="input-div flex flex-col gap-2">
+                        <label for="victima" class="text-white p-1">Cantidad de veces siendo víctima:</label>
+                        <input type="number" value="1" id="victimCount" class="w-full rounded-lg p-3 outline-none bg-neutral-200" autocomplete="off" min="1" max="1" step="1" readonly>
+                    </div>
+
+                    <div class="input-div flex flex-col gap-2">
+                        <label for="distrito" class="text-white p-1">Distrito:</label>
+                        <select id="distrito" class="w-full rounded-lg p-3 outline-none text-black bg-neutral-200">
+                            <option value="" selected disabled>Seleccionar</option>
+                            <option value="San Martin de Porres">San Martin de Porres</option>
+                            <option value="Comas">Comas</option>
+                            <option value="Los Olivos">Los Olivos</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="flex space-x-4">
+                    <label for="weapon" class="flex justify-center items-center text-white">¿Uso de arma?:</label>
+                    <label class="cursor-pointer">
+                        <input type="radio" name="weaponUsed" value="yes" class="hidden peer">
+                        <div id="weapon-yes" class="w-10 h-10 flex items-center justify-center bg-gray-200 peer-checked:bg-green-500">Sí</div>
+                    </label>
+                    <label class="cursor-pointer">
+                        <input type="radio" name="weaponUsed" value="no" class="hidden peer">
+                        <div id="weapon-no" class="w-10 h-10 flex items-center justify-center bg-gray-200 peer-checked:bg-red-500">No</div>
+                    </label>
+                </div>
+
+                <div class="flex space-x-4">
+                    <label for="motorcycle" class="flex justify-center items-center text-white">¿Uso de moto?:</label>
+                    <label class="cursor-pointer">
+                        <input type="radio" name="motorcycleUsed" value="yes" class="hidden peer">
+                        <div id="motorcycle-yes" class="w-10 h-10 flex items-center justify-center bg-gray-200 peer-checked:bg-green-500">Sí</div>
+                    </label>
+                    <label class="cursor-pointer">
+                        <input type="radio" name="motorcycleUsed" value="no" class="hidden peer">
+                        <div id="motorcycle-no" class="w-10 h-10 flex items-center justify-center bg-gray-200 peer-checked:bg-red-500">No</div>
+                    </label>
+                </div>
+
+                <button id="form-btn" class="bg-red-950 hover:bg-red-900 w-full font-bold text-white p-2 mt-2 rounded-lg">Registrar</button>
+
+                <div id="notification" class="relative mt-4 text-sm"></div>
+            </form>
+        </div>
+    </div>
+    <script src="/Components/nav.js"></script>
+    <script src="index.js"></script>
+</body>
+</html>
